@@ -1,0 +1,191 @@
+.message {
+  display: flex;
+  margin-bottom: var(--spacing-md);
+  animation: slideIn 0.3s ease-out;
+  
+  &.user {
+    justify-content: flex-end;
+    
+    .message-content {
+      flex-direction: row-reverse;
+      
+      .message-body {
+        background: var(--bg-chat-user);
+        color: var(--text-inverse);
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius) var(--border-radius-lg);
+        margin-right: var(--spacing-sm);
+        
+        .message-text {
+          p {
+            margin: 0;
+          }
+        }
+        
+        .message-timestamp {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+    }
+  }
+  
+  &.bot {
+    justify-content: flex-start;
+    
+    .message-content {
+      flex-direction: row;
+      
+      .message-body {
+        background: var(--bg-chat-bot);
+        color: var(--text-primary);
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-lg) var(--border-radius);
+        margin-left: var(--spacing-sm);
+        border: 1px solid var(--border-color);
+        
+        .message-timestamp {
+          color: var(--text-tertiary);
+        }
+      }
+    }
+  }
+  
+  .message-content {
+    display: flex;
+    align-items: flex-start;
+    max-width: 80%;
+    
+    @include mobile {
+      max-width: 90%;
+    }
+  }
+  
+  .message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    
+    @include mobile {
+      width: 28px;
+      height: 28px;
+      font-size: var(--font-size-xs);
+    }
+  }
+  
+  .message-body {
+    padding: var(--spacing-sm) var(--spacing-md);
+    max-width: 100%;
+    word-wrap: break-word;
+    box-shadow: var(--shadow-sm);
+    
+    @include mobile {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+  }
+  
+  .message-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    
+    @include mobile {
+      font-size: var(--font-size-xs);
+    }
+    
+    // Markdown styling for bot messages
+    .markdown-paragraph {
+      margin: 0 0 var(--spacing-sm) 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .markdown-bold {
+      font-weight: 600;
+    }
+    
+    .markdown-italic {
+      font-style: italic;
+    }
+    
+    .markdown-list {
+      margin: var(--spacing-sm) 0;
+      padding-left: var(--spacing-lg);
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .markdown-list-item {
+      margin: var(--spacing-xs) 0;
+      position: relative;
+      
+      &::marker {
+        color: var(--primary-color);
+      }
+    }
+    
+    .markdown-code {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9em;
+    }
+    
+    .markdown-pre {
+      background: rgba(0, 0, 0, 0.05);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius);
+      overflow-x: auto;
+      margin: var(--spacing-sm) 0;
+      
+      code {
+        background: none;
+        padding: 0;
+      }
+    }
+    
+    .typing-cursor {
+      animation: blink 1s infinite;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+  }
+  
+  .message-timestamp {
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-xs);
+    opacity: 0.7;
+    
+    @include mobile {
+      font-size: 0.65rem;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
